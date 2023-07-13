@@ -1,0 +1,14 @@
+pkgname=watermelonOS
+pkgver=1.0
+pkgrel=1
+pkgdesc="watermelonOS by Tyrone Watermelon"
+arch=('x86_64')
+url="https://github.com/stormx920/watermelonOS"
+license=
+depends=('libxinerama')
+makedepends=('make')
+source=("$url/archive/refs/tags/$pkgver.tar.gz")
+
+prepare(){
+
+}
