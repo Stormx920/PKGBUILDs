@@ -4,11 +4,26 @@ pkgrel=1
 pkgdesc="watermelonOS by Tyrone Watermelon"
 arch=('x86_64')
 url="https://github.com/stormx920/watermelonOS"
-license=
-depends=('libxinerama')
-makedepends=('make')
-source=("$url/archive/refs/tags/$pkgver.tar.gz")
+license=(MIT)
+depends=(libxinerama libx11 libxft)
+makedepends=(git)
+provides=($pkgname)
+conflicts=($pkgname)
+source=(git+https://github.com/stormx920/watermelonOS)
+sha256sums=('SKIP')
 
-prepare(){
-
+build(){
+    cd "$pkgname"
+    cd dmenu
+    make
+    make install
+    cd ../dwm
+    make
+    make install
+    cd ../slstats
+    make
+    make install
+    cd ../st
+    make
+    make install
 }
