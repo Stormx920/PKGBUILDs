@@ -13,7 +13,7 @@ source=(git+https://github.com/stormx920/watermelonOS)
 sha256sums=('SKIP')
 
 build(){
-    cd "$pkgname"
+    cd "src/$pkgname"
     cd dmenu
     make
     cd ../dwm
