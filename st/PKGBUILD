@@ -1,6 +1,5 @@
 pkgname=st-stormx920-git
-_pkgname=st
-pkgver=0.9.r8.796d3e4
+pkgver=0.9.r11.edb7f13
 pkgrel=1
 epoch=1
 pkgdesc="Stormx920's simple (suckless) terminal with transparency, scrollback, etc. "
