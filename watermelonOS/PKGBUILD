@@ -6,7 +6,7 @@ pkgdesc="watermelonOS by Tyrone Watermelon"
 arch=('x86_64')
 url="https://github.com/stormx920/watermelonOS"
 license=(MIT)
-depends=(libxinerama libx11 libxft ttf-hack-nerd)
+depends=(libxinerama libx11 libxft ttf-hack-nerd sudo)
 makedepends=(git)
 provides=($pkgname)
 conflicts=($pkgname)
@@ -43,11 +43,11 @@ build(){
 package(){
     cd "$pkgname"
     cd dmenu
-    make install
+    sudo make install
     cd ../dwm
-    make install
+    sudo make install
     cd ../slstatus
-    make install
+    sudo make install
     cd ../st
-    make install
+    sudo make install
 }
