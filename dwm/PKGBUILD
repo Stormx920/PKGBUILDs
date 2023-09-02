@@ -1,16 +1,16 @@
-pkgname="st-watermelon"
-_pkgname=st
-pkgver=0.9.r10.g0760d8f
+pkgname="dwm-watermelon"
+_pkgname=dwm
+pkgver=6.4.release.4.r0.ge27347c
 pkgrel=1
-pkgdesc="Tyrone Watermelon´s st build"
+pkgdesc="Tyrone Watermelon´s dwm build"
 arch=('i686' 'x86_64' 'arm' 'armv7h' 'armv6h' 'aarch64')
-url="https://github.com/TyroneWatermelon420/st"
+url="https://github.com/TyroneWatermelon420/dwm"
 license=('MIT')
-provides=(st)
-conflicts=(st)
-depends=('')
+provides=(dwm)
+conflicts=(dwm)
+depends=('libx11' 'libxinerama' 'libxft' 'freetype2')
 
-source=("$_pkgname::git+https://github.com/TyroneWatermelon420/st")
+source=("$_pkgname::git+https://github.com/TyroneWatermelon420/dwm")
 
 sha256sums=('SKIP')
 
@@ -29,6 +29,6 @@ package() {
   make PREFIX=/usr DESTDIR="$pkgdir" install
   install -m644 -D LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
   install -m644 -D README "$pkgdir/usr/share/doc/$pkgname/README"
-  install -m644 -D st.desktop "$pkgdir/usr/share/applications/st.desktop"
+  install -m644 -D dwm.desktop "$pkgdir/usr/share/xsessions/dwm.desktop"
 }
 

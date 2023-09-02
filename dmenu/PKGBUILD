@@ -1,16 +1,16 @@
-pkgname="st-watermelon"
-_pkgname=st
-pkgver=0.9.r10.g0760d8f
+pkgname="dmenu-watermelon"
+_pkgname=dmenu
+pkgver=5.2.r11.g3f14038
 pkgrel=1
-pkgdesc="Tyrone Watermelon´s st build"
+pkgdesc="Tyrone Watermelon´s dmenu build"
 arch=('i686' 'x86_64' 'arm' 'armv7h' 'armv6h' 'aarch64')
-url="https://github.com/TyroneWatermelon420/st"
+url="https://github.com/TyroneWatermelon420/dmenu"
 license=('MIT')
-provides=(st)
-conflicts=(st)
+provides=(dmenu)
+conflicts=(dmenu)
 depends=('')
 
-source=("$_pkgname::git+https://github.com/TyroneWatermelon420/st")
+source=("$_pkgname::git+https://github.com/TyroneWatermelon420/dmenu")
 
 sha256sums=('SKIP')
 
@@ -21,7 +21,7 @@ pkgver(){
 
 build() {
   cd $_pkgname
-  make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
+  make
 }
 
 package() {
@@ -29,6 +29,6 @@ package() {
   make PREFIX=/usr DESTDIR="$pkgdir" install
   install -m644 -D LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
   install -m644 -D README "$pkgdir/usr/share/doc/$pkgname/README"
-  install -m644 -D st.desktop "$pkgdir/usr/share/applications/st.desktop"
+  install -m644 -D dmenu.desktop "$pkgdir/usr/share/applications/dmenu.desktop"
 }
 
