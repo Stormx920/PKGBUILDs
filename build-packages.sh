@@ -24,7 +24,7 @@ readarray -t x86_list <<< "$(find x86_64/ -type f -name PKGBUILD | awk -F / '{pr
 for x in "${x86_list[@]}"
 do
     cd "${dir_path}"/x86_64/"${x}"
-    git clone "https://aur.archlinux.org/${x}.git" &>/dev/null
+    #git clone "https://aur.archlinux.org/${x}.git" &>/dev/null
 
     if [ -f "${x}/PKGBUILD" ]; then
         if cmp --silent -- "PKGBUILD" "${x}/PKGBUILD"; then

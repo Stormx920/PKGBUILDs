@@ -1,34 +1,47 @@
-pkgname="dmenu-watermelon"
-_pkgname=dmenu
-pkgver=5.2.r11.g3f14038
+# Maintainer: Tyrone Watermelon <tyronewatermlon@tutanota.com>
+pkgname=dmenu-watermelonos
+pkgver=5.2.r13.3f14038
 pkgrel=1
-pkgdesc="Tyrone Watermelon´s dmenu build"
-arch=('i686' 'x86_64' 'arm' 'armv7h' 'armv6h' 'aarch64')
-url="https://github.com/TyroneWatermelon420/dmenu"
+pkgdesc="Patched build of dmenu for watermelonOS."
+arch=('x86_64')
+url="https://github.com/TyroneWatermelon420/dmenu-watermelonos.git"
 license=('MIT')
+groups=()
+depends=()
+makedepends=(make)
+checkdepends=()
+optdepends=()
 provides=(dmenu)
 conflicts=(dmenu)
-depends=('')
+replaces=()
+backup=()
+options=()
+source=("git+$url")
+noextract=()
+md5sums=('SKIP')
+validpgpkeys=()
 
-source=("$_pkgname::git+https://github.com/TyroneWatermelon420/dmenu")
+pkgver() {
+	cd "$srcdir/${pkgname}"
+	printf "%s.r%s.%s" "$(awk '/^VERSION =/ {print $3}' config.mk)" \
+		"$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
 
-sha256sums=('SKIP')
-
-pkgver(){
-  cd $_pkgname
-  git describe --long --tags | sed -E 's/([^-]*-g)/r\1/;s/-/./g'
+prepare() {
+	cd $srcdir/${pkgname}
+	# skip terminfo which conflicts with ncurses
+	sed -i '/tic /d' Makefile
 }
 
 build() {
-  cd $_pkgname
-  make
+  cd "${pkgname}"
+  make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
 }
 
 package() {
-  cd $_pkgname
-  make PREFIX=/usr DESTDIR="$pkgdir" install
-  install -m644 -D LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
-  install -m644 -D README "$pkgdir/usr/share/doc/$pkgname/README"
-  install -m644 -D dmenu.desktop "$pkgdir/usr/share/applications/dmenu.desktop"
+  cd "${pkgname}"  
+  make PREFIX=/usr DESTDIR="${pkgdir}" install
+  install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+  install -Dm644 README "${pkgdir}/usr/share/doc/${pkgname}/README.md"
 }
 
