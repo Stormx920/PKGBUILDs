@@ -1,6 +1,6 @@
 # Maintainer: Tyrone Watermelon <tyronewatermlon@tutanota.com>
 pkgname=st-watermelonos
-pkgver=0.9.r13.0b2e784
+pkgver=0.9.r15.6a54e5f
 pkgrel=1
 pkgdesc="Patched build of st for watermelonOS."
 arch=('x86_64')

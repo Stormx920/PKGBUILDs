@@ -1,6 +1,6 @@
 # Maintainer: Tyrone Watermelon <tyronewatermlon@tutanota.com>
 pkgname=slstatus-watermelonos
-pkgver=0.r9.3e0ad6b
+pkgver=0.r11.109f4cc
 pkgrel=1
 pkgdesc="Patched build of slstatus for watermelonOS."
 arch=('x86_64')

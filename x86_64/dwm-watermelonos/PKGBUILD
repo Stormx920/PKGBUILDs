@@ -1,6 +1,6 @@
 # Maintainer: Tyrone Watermelon <tyronewatermlon@tutanota.com>
 pkgname=dwm-watermelonos
-pkgver=6.4.r41.1bf1114
+pkgver=6.4.r45.750342d
 pkgrel=1
 pkgdesc="Patched build of dwm for watermelonOS."
 arch=('x86_64')
