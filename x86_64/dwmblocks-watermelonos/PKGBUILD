@@ -1,0 +1,46 @@
+# Maintainer: Tyrone Watermelon <tyronewatermlon@tutanota.com>
+pkgname=dwmblocks-watermelonos
+pkgver=.r71.ff6f594
+pkgrel=1
+pkgdesc="Patched build of dwmblocks for watermelonOS."
+arch=('x86_64')
+url="https://github.com/TyroneWatermelon420/dwmblocks-watermelonos.git"
+license=('MIT')
+groups=()
+depends=()
+makedepends=(make)
+checkdepends=()
+optdepends=()
+provides=(dwmblocks)
+conflicts=(dwmblocks)
+replaces=()
+backup=()
+options=()
+source=("git+$url")
+noextract=()
+md5sums=('SKIP')
+validpgpkeys=()
+
+pkgver() {
+	cd "$srcdir/${pkgname}"
+	printf "%s.r%s.%s" "$(awk '/^VERSION =/ {print $3}' config.mk)" \
+		"$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+prepare() {
+	cd $srcdir/${pkgname}
+	# skip terminfo which conflicts with ncurses
+	sed -i '/tic /d' Makefile
+}
+
+build() {
+  cd "${pkgname}"
+  make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
+}
+
+package() {
+  cd "${pkgname}"  
+  make PREFIX=/usr DESTDIR="${pkgdir}" install
+  install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+}
+
